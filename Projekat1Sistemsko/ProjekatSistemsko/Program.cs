@@ -57,7 +57,7 @@ namespace SimpleFileServer
                         {
                             context.Response.Close(); //zatvaramo konekciju sa klijentom
                         }
-                    });
+                    }, context);
                 }
             }
         }
