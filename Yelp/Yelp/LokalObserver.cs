@@ -31,7 +31,7 @@ namespace Yelp
 
         public void OnNext(Lokal value)
         {
-            Console.WriteLine(value.Name + "\n\n " + Thread.CurrentThread.ManagedThreadId);
+            Console.WriteLine(value.Name + " " + value.Rating + " " + Thread.CurrentThread.ManagedThreadId);
 
             SumRating += value.Rating;
             NumberOfLocals++;

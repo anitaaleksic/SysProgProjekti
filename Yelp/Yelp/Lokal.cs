@@ -6,26 +6,31 @@ using System.Threading.Tasks;
 
 namespace Yelp
 {
-    public class Lokal
+    public class Lokal : IComparable<Lokal>
     {
-        public string Location { get; set; }    
+  
         public string Name { get; set; }
         public bool Open {  get; set; }
         public double Rating { get; set; }
-        public double Price { get; set; }
+        public string Price { get; set; }
 
-        public string Categories { get; set; }
+        public Kategorija[] Categories { get; set; }
 
-        public Lokal (bool open, double rating, double price, string kategorija, string name, string lokacija)
+        public Lokal (bool open, double rating, string price, Kategorija[] kategorija, string name)
         {
             Name = name;
-            Location = lokacija;
+            
             Open = open;
             Rating = rating;
             Price = price;
             Categories = kategorija;
         }
 
-
+        public int CompareTo(Lokal? other)
+        {
+            if (other == null) return 1;
+            if (Rating > other.Rating) return -1;
+            else return 1;
+        }
     }
 }

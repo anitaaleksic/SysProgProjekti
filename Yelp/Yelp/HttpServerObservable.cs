@@ -15,6 +15,7 @@ using Newtonsoft.Json;
 
 namespace Yelp
 {
+
     public class HttpServerObservable : IObservable<Lokal>
     {
 
@@ -33,11 +34,11 @@ namespace Yelp
 
         public void Pretraga(string lokacija, double rating, string kategorija)
         {
-            Client.GetAsync($"{BASE_URL}/businesses/search?location={lokacija}&sort_by=rating&open_now=true&categories={kategorija}").ContinueWith(async task =>
+            Client.GetAsync($"{BASE_URL}/businesses/search?location={lokacija}&categories={kategorija}&open_now=true").ContinueWith(async task =>
             {
                 try
                 {
-                    Console.WriteLine($"{BASE_URL}/businesses/search?location={lokacija}&sort_by=rating&open_now=true&categories={kategorija}");
+                    var url = $"{BASE_URL}/businesses/search?location={lokacija}&sort_by=rating&open_now=true&categories={kategorija}";
                     var response = task.Result;
                     response.EnsureSuccessStatusCode();
                     var neparsovan = await response.Content.ReadAsStringAsync();
@@ -45,13 +46,10 @@ namespace Yelp
                     var content = JsonConvert.DeserializeObject<List<Lokal>>(parsovan["businesses"].ToString());
                     if (content.Count == 0)
                         throw new Exception("nema takvih lokala");
+                    content.Sort();
                     foreach(var lokal in content)
                     {
-                        if (lokal.Rating >= rating)
-                        {
-                            Lokal newLocal = new Lokal(lokal.Open, lokal.Rating, lokal.Price, lokal.Categories, lokal.Name, lokal.Location);
-                            lokali.OnNext(lokal);
-                        }
+                        lokali.OnNext(lokal);
                     }
                     lokali.OnCompleted();
                 }
