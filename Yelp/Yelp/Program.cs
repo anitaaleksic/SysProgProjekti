@@ -10,6 +10,7 @@ public class Program
         double rating = int.Parse(Console.ReadLine() ?? "0");
         Console.WriteLine("Unesite kategoriju: ");
         string kategorija = Console.ReadLine() ?? String.Empty;
+        Console.WriteLine();
         var observer = new LokalObserver();
         var server = new HttpServerObservable();
         server.Subscribe(observer);

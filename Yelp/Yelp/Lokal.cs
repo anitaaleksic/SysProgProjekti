@@ -18,8 +18,7 @@ namespace Yelp
 
         public Lokal (bool open, double rating, string price, Kategorija[] kategorija, string name)
         {
-            Name = name;
-            
+            Name = name;            
             Open = open;
             Rating = rating;
             Price = price;
@@ -29,7 +28,9 @@ namespace Yelp
         public int CompareTo(Lokal? other)
         {
             if (other == null) return 1;
-            if (Rating > other.Rating) return -1;
+            if (other.Price == null) return -1;
+            if (Price == null) return 1;
+            if (Price.Length > other.Price.Length) return -1;
             else return 1;
         }
     }
