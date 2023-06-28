@@ -15,10 +15,9 @@ using Newtonsoft.Json;
 
 namespace Yelp
 {
-
     public class HttpServerObservable : IObservable<Lokal>
     {
-        const string API_KEY = "LnX1-p20RwoEELsFS1VV6OAdvZfg9WnWiQClefEUafsjhBJMKNAebw7BAjXOIFxVqRCuTdfJg9c57FlWqmt19aMH0Pk2d-Q8i8JQ0bTklNEc1qOlPnrWGVNjcVGbZHYx";
+        const string API_KEY = "U97rzveQ9YOjsnuCojrgtSO2Aux70B9NlKLy_q40SVhDMxfZhNutr4KS59VxgVnTpzKGyeJExvRmvxdHa3bS2kVNOzgYG3EF9gpmcIrKQUkkjkrOVRQdPQzi6FqcZHYx";
         const string BASE_URL = "https://api.yelp.com/v3";
         public Subject<Lokal> lokali;
         public HttpClient Client { get; set; }

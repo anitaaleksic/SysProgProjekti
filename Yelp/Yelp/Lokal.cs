@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace Yelp
 {
     public class Lokal : IComparable<Lokal>
-    {
-  
+    {  
         public string Name { get; set; }
         public bool Open {  get; set; }
         public double Rating { get; set; }
